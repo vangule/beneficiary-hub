@@ -1,22 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button } from '@mui/material';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import { useRouter } from 'next/router';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogTitle from '@mui/material/DialogTitle';
+import { Edit, Delete, ArrowBack } from '@mui/icons-material';
 import { removeBeneficiary } from '@/redux/userSlice';
-import { FlexHeader, Header, StyledTableCell } from './styles';
+import ConfirmationModal from './ConfirmationModal';
+import { FlexHeader, Header, StyledTableCell, Note } from './styles';
 
 function BeneficiaryList() {
 	const router = useRouter();
@@ -36,11 +25,6 @@ function BeneficiaryList() {
 		setOpen(true);
 	};
 
-	const handleClose = () => {
-		setOpen(false);
-		setSelectedId(false);
-	};
-
 	const handleDelete = () => {
 		dispatch(removeBeneficiary(selectedId));
 		setSelectedId();
@@ -51,17 +35,18 @@ function BeneficiaryList() {
 		<>
 			<FlexHeader>
 				<div style={{ display: 'flex', alignItems: 'center' }}>
-					<ArrowBackIcon
+					<ArrowBack
 						onClick={() => router.push('/')}
-						style={{ marginRight: 20, cursor: 'pointer' }}
+						style={{ marginRight: 24, cursor: 'pointer' }}
 					/>
 					<Header>Beneficiary Users</Header>
 				</div>
 				<Button
+					style={{ background : '#000'}}
 					onClick={() => router.push('/beneficiaries/add')}
 					variant="contained"
 				>
-					Add Beneficiary
+					Add New Beneficiary
 				</Button>
 			</FlexHeader>
 			<TableContainer component={Paper}>
@@ -76,48 +61,45 @@ function BeneficiaryList() {
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{beneficiaries.map((row) => (
-							<TableRow
-								key={row.id}
+						{(beneficiaries || []).map((row) => {
+							const { name, accountNumber, bankName, accountType, id  } = row || {};
+
+							const typeOfAcc = row.accountType.replace(/_/g, " ");
+
+							return(
+								<TableRow
+								key={id}
 								sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 							>
-								<TableCell component="th" scope="row">
-									{row.name}
+								<TableCell component="th" scope="row" style={{ textTransform : 'capitalize' }}>
+									{name}
 								</TableCell>
-								<TableCell align="right">{row.accountNumber}</TableCell>
-								<TableCell align="right">{row.bankName}</TableCell>
-								<TableCell align="right">{row.accountType}</TableCell>
+								<TableCell align="right">{accountNumber}</TableCell>
+								<TableCell align="right">{bankName}</TableCell>
+								<TableCell align="right" style={{ textTransform : 'capitalize'}}>{typeOfAcc}</TableCell>
 								<TableCell align="right">
-									<EditIcon
-										onClick={() => handleEdit(row.id)}
+									<Edit
+										onClick={() => handleEdit(id)}
 										style={{ marginRight: 8, cursor: 'pointer' }}
 									/>
-									<DeleteIcon
-										onClick={() => handleDeleteModal(row.id)}
+									<Delete
+										onClick={() => handleDeleteModal(id)}
 										style={{ cursor: 'pointer' }}
 									/>
 								</TableCell>
 							</TableRow>
-						))}
+							)
+						})}
 					</TableBody>
 				</Table>
 			</TableContainer>
-			<Dialog
+			{beneficiaries?.length <= 0 &&  <Note>No beneficiary added yet</Note>}
+
+			<ConfirmationModal
 				open={open}
-				onClose={handleClose}
-				aria-labelledby="alert-dialog-title"
-				aria-describedby="alert-dialog-description"
-			>
-				<DialogTitle id="alert-dialog-title">
-					Are you sure you want to delete this user?
-				</DialogTitle>
-				<DialogActions>
-					<Button onClick={handleDelete}>Yes</Button>
-					<Button onClick={handleClose} autoFocus>
-						No
-					</Button>
-				</DialogActions>
-			</Dialog>
+				setOpen={setOpen}
+				setSelectedId={setSelectedId}
+				handleDelete={handleDelete} />
 		</>
 	);
 }

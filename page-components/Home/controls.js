@@ -17,7 +17,7 @@ export const controls = [
 		rules: {
 			required: {
 				value: true,
-				message: 'Full Name is required',
+				message: 'Full name is required',
 			},
 			pattern: {
 				value: /^[a-zA-Z\s]+$/,
@@ -43,20 +43,28 @@ export const controls = [
 				value: 'india',
 			},
 			{
-				label: 'Iceland',
-				value: 'iceland',
+				label: 'Afrika',
+				value: 'afrika',
 			},
 			{
-				label: 'Algeria',
-				value: 'algeria',
+				label: 'Afghanistan',
+				value: 'afghanistan',
 			},
 			{
-				label: 'Nepal',
-				value: 'nepal',
+				label : 'Australia',
+				value: 'australia'
 			},
 			{
 				label: 'Japan',
 				value: 'japan',
+			},
+			{
+				label: 'Rusia',
+				value: 'rusia',
+			},
+			{
+				label: 'US',
+				value: 'us',
 			},
 		],
 	},
@@ -86,19 +94,18 @@ export const controls = [
 		rules: {
 			required: {
 				value: true,
-				message: 'Mobile Number is required',
+				message: 'Mobile number is required',
 			},
 			validate: (value) => {
 				const { country_code, number } = value;
 
 				if (!country_code) {
-					return 'Mobile Number Country Code is Required';
+					return 'Mobile number country code is required';
 				}
 
 				if (!number) {
-					return 'Mobile Number is required';
+					return 'Mobile number is required';
 				}
-
 				return undefined;
 			},
 		},
@@ -115,7 +122,7 @@ export const controls = [
 		rules: {
 			required: {
 				value: true,
-				message: 'Pin Code is required',
+				message: 'Pin code is required',
 			},
 		},
 	},

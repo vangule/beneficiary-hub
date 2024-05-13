@@ -21,3 +21,9 @@ export const StyledTableCell = styled(TableCell)(() => ({
 		fontSize: 14,
 	},
 }));
+
+export const Note = styled.div`
+	font-size: 24px;
+	text-align: center;
+	margin-top: 30px
+`;

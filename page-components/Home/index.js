@@ -1,28 +1,28 @@
 import React, { useState } from 'react';
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
-import {
-	Container,
-	FormContainer,
-	Heading,
-	MainHeading,
-	FlexHeader,
-} from './styles';
+import { List, ListItem, Snackbar, Alert, Button, Grid } from '@mui/material';
 import { useForm } from '@/forms';
 import { controls, controlMapping } from './controls';
 import { setUserDetails, resetState } from '@/redux/userSlice';
 import isEmpty from '@/utils/isEmpty';
+import {
+	Container,
+	FormContainer,
+	Heading,
+	SubHeading,
+	FlexHeader,
+	BottomSection,
+	Field
+} from './styles';
 
 function Home() {
-	const router = useRouter();
+	const { push } = useRouter();
 
 	const [openSnackBar, setOpenSnackBar] = useState(false);
+
+	const { user } = useSelector((state) => state?.user);
+	const { fullName = '', address = '', country = '', mobileNumber = '', pincode = '' } = user || {};
 
 	const dispatch = useDispatch();
 	const {
@@ -36,24 +36,19 @@ function Home() {
 		setOpenSnackBar(true);
 	};
 
-	const handleRoute = () => {
-		router.push('/beneficiaries');
-	};
-
 	const handleCloseSnackbar = () => {
 		setOpenSnackBar(false);
 	};
 
-	const { user } = useSelector((state) => state?.user);
 
 	return (
 		<Container>
 			<FormContainer>
-				<MainHeading>Beneficiary</MainHeading>
+				<Heading>Beneficiary</Heading>
 				<FlexHeader>
-					<Heading>Bank Customer Details</Heading>
+					<SubHeading>Account Information</SubHeading>
 					{!isEmpty(user) && (
-						<Button variant="contained" type="submit" onClick={handleRoute}>
+						<Button style={{ background : '#000' }} variant="contained" type="submit" onClick={() => push('/beneficiaries')}>
 							Manage Beneficiaries
 						</Button>
 					)}
@@ -72,40 +67,43 @@ function Home() {
 											{...val}
 											error={!!errors[val.name]}
 											helperText={errors[val.name]?.message}
-										/>{' '}
+										/>
 									</Grid>
 								);
 							})}
 						</Grid>
-						<Button
-							style={{ marginTop: '20px' }}
-							variant="contained"
-							type="submit"
-						>
-							Submit
-						</Button>
+						<BottomSection>
+							<Button
+								style={{ marginTop: '20px', background: '#000' }}
+								variant="contained"
+								type="submit"
+							>
+								Submit
+							</Button>
+						</BottomSection>
 					</form>
 				) : (
-					<List>
-						<ListItem>Full Name : {user?.fullName}</ListItem>
-						<ListItem>Address : {user?.address}</ListItem>
+					<List style={{ background : 'aliceblue', borderRadius: '4px', boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)', margin : '24px 0' }}>
+						<ListItem style={{ textTransform: 'capitalize'}}><Field>Full Name :</Field>{fullName}</ListItem>
+						<ListItem><Field>Address :</Field>{address}</ListItem>
 						<ListItem style={{ textTransform: 'capitalize' }}>
-							Country : {user?.country}
+							<Field>Country :</Field> {country}
 						</ListItem>
 						<ListItem>
-							Mobile Number : {user?.mobileNumber?.country_code}{' '}
-							{user?.mobileNumber?.number}
+							<Field>Mobile Number :</Field>{mobileNumber?.country_code}{' '}
+							{mobileNumber?.number}
 						</ListItem>
-						<ListItem>Pincode : {user?.pincode}</ListItem>
+						<ListItem><Field>Pincode :</Field>{pincode}</ListItem>
 					</List>
 				)}
 				{!isEmpty(user) && (
 					<Button
 						style={{ marginTop: '20px' }}
 						variant="contained"
+						color='error'
 						onClick={() => dispatch(resetState())}
 					>
-						Clear Redux Storage
+						Clear Data
 					</Button>
 				)}
 			</FormContainer>

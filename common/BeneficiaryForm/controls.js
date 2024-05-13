@@ -30,7 +30,7 @@ export const controls = [
 		rules: {
 			required: {
 				value: true,
-				message: 'Account Number is required',
+				message: 'Account number is required',
 			},
 		},
 	},
@@ -44,25 +44,25 @@ export const controls = [
 		rules: {
 			required: {
 				value: true,
-				message: 'Bank Name is required',
+				message: 'Bank name is required',
 			},
 		},
 		options: [
 			{
-				label: 'Axis Bank',
-				value: 'Axis Bank',
+				label : 'Federal Bank',
+				value : 'Federal Bank'
 			},
 			{
 				label: 'HDFC Bank',
 				value: 'HDFC Bank',
 			},
 			{
-				label: 'Kotak Bank',
-				value: 'Kotak Bank',
+				label: 'Indusland Bank',
+				value: 'Indusland Bank',
 			},
 			{
-				label: 'RBL Bank',
-				value: 'RBL Bank',
+				label: 'SBI Bank',
+				value: 'SBI Bank',
 			},
 			{
 				label: 'Yes Bank',
@@ -80,17 +80,17 @@ export const controls = [
 		rules: {
 			required: {
 				value: true,
-				message: 'Account Type is required',
+				message: 'Account type is required',
 			},
 		},
 		options: [
 			{
-				label: 'Savings Account',
-				value: 'Savings Account',
+				label: 'Current Account',
+				value: 'current_account',
 			},
 			{
-				label: 'Current Account',
-				value: 'Current Account',
+				label: 'Savings Account',
+				value: 'savings_account',
 			},
 		],
 	},

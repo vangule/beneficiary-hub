@@ -8,7 +8,7 @@ import ConfirmationModal from './ConfirmationModal';
 import { FlexHeader, Header, StyledTableCell, Note } from './styles';
 
 function BeneficiaryList() {
-	const router = useRouter();
+	const { push } = useRouter();
 	const dispatch = useDispatch();
 
 	const [open, setOpen] = useState(false);
@@ -17,7 +17,7 @@ function BeneficiaryList() {
 	const { beneficiaries } = useSelector((state) => state?.user);
 
 	const handleEdit = (id) => {
-		router.push(`/beneficiaries/edit/${id}`);
+		push(`/beneficiary/edit/${id}`);
 	};
 
 	const handleDeleteModal = (id) => {
@@ -36,14 +36,14 @@ function BeneficiaryList() {
 			<FlexHeader>
 				<div style={{ display: 'flex', alignItems: 'center' }}>
 					<ArrowBack
-						onClick={() => router.push('/')}
+						onClick={() => push('/')}
 						style={{ marginRight: 24, cursor: 'pointer' }}
 					/>
 					<Header>Beneficiary Users</Header>
 				</div>
 				<Button
 					style={{ background : '#000'}}
-					onClick={() => router.push('/beneficiaries/add')}
+					onClick={() => push('/beneficiary/add')}
 					variant="contained"
 				>
 					Add New Beneficiary

@@ -1,9 +1,8 @@
-import TextField from '@mui/material/TextField';
 import React from 'react';
 
 import SelectCountryCode from '../CountryCodeSelect';
 
-import { CountryCode, MobileNumber, RowConatainer } from './styles';
+import { CountryCode, MobileNumber, RowConatainer, TextFieldWrapper } from './styles';
 
 function SelectMobileNumber({
 	value = {},
@@ -31,14 +30,13 @@ function SelectMobileNumber({
 					{...rest}
 					value={country_code || (value || {})[codeKey]}
 					onChange={handleCodeChange}
-					// placeholder="Select"
 					name=""
 					disabled={disable_country_code}
 				/>
 			</CountryCode>
 
 			<MobileNumber>
-				<TextField
+				<TextFieldWrapper
 					{...rest}
 					variant="outlined"
 					label="Mobile Number"

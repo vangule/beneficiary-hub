@@ -49,7 +49,7 @@ function BeneficiaryForm({ onSubmit, isEdit, prefillData }) {
 					Submit
 				</Button>
 				<Button
-					onClick={() => router.push('/beneficiaries')}
+					onClick={() => router.push('/beneficiary')}
 					variant="outlined"
 					style={{ border : '1px solid #000', color: '#000' }}
 				>

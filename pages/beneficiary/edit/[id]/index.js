@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux';
 import AddEditBeneficiary from '@/page-components/AddEditBeneficiary';
 
 function EditBeneficiary() {
-	const router = useRouter();
+	const { query } = useRouter();
 
 	const beneficiary = useSelector((state) =>
 		state?.user?.beneficiaries.find(
-			(val) => val.id === Number(router.query?.id),
+			(val) => val.id === Number(query?.id),
 		),
 	);
 

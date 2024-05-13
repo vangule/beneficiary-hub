@@ -48,7 +48,7 @@ function Home() {
 				<FlexHeader>
 					<SubHeading>Account Information</SubHeading>
 					{!isEmpty(user) && (
-						<Button style={{ background : '#000' }} variant="contained" type="submit" onClick={() => push('/beneficiaries')}>
+						<Button style={{ background : '#000' }} variant="contained" type="submit" onClick={() => push('/beneficiary')}>
 							Manage Beneficiaries
 						</Button>
 					)}

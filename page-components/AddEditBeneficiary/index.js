@@ -4,9 +4,9 @@ import { useDispatch } from 'react-redux';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useRouter } from 'next/router';
-import { Header, Container, FormContainer } from './styles';
 import BeneficiaryForm from '@/common/BeneficiaryForm';
 import { addBeneficiary, editBeneficiary } from '@/redux/userSlice';
+import { Header, Container, FormContainer } from './styles';
 
 const getRandomNumberUpToFiveDigits = () => {
 	return Math.floor(Math.random() * 100000);
@@ -14,7 +14,8 @@ const getRandomNumberUpToFiveDigits = () => {
 
 function AddEditBeneficiary({ isEdit, prefillData }) {
 	const dispatch = useDispatch();
-	const router = useRouter();
+	const { push } = useRouter();
+
 	const [openSnackBar, setOpenSnackBar] = useState(false);
 
 	const onSubmit = (data) => {
@@ -29,12 +30,8 @@ function AddEditBeneficiary({ isEdit, prefillData }) {
 		setOpenSnackBar(true);
 
 		setTimeout(() => {
-			router.push('/beneficiaries');
+			push('/beneficiary');
 		}, 1000);
-	};
-
-	const handleCloseSnackbar = () => {
-		setOpenSnackBar(false);
 	};
 
 	return (
@@ -50,11 +47,11 @@ function AddEditBeneficiary({ isEdit, prefillData }) {
 			<Snackbar
 				open={openSnackBar}
 				autoHideDuration={3000}
-				onClose={handleCloseSnackbar}
+				onClose={() => setOpenSnackBar(false)}
 				anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
 			>
 				<Alert
-					onClose={handleCloseSnackbar}
+					onClose={() => setOpenSnackBar(false)}
 					severity="success"
 					variant="filled"
 					sx={{ width: '100%' }}

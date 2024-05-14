@@ -5,7 +5,8 @@ import { useRouter } from 'next/router';
 import { Edit, Delete, ArrowBack } from '@mui/icons-material';
 import { removeBeneficiary } from '@/redux/userSlice';
 import ConfirmationModal from './ConfirmationModal';
-import { Container, FlexHeader, Header, StyledTableCell, Note } from './styles';
+import { Container, FlexHeader, Header, StyledTableCell, Note, Back } from './styles';
+import { startCase } from '@/utils/startCase';
 
 function BeneficiaryList() {
 	const { push } = useRouter();
@@ -39,10 +40,10 @@ function BeneficiaryList() {
 						onClick={() => push('/')}
 						style={{ marginRight: 24, cursor: 'pointer', width: '40px', height: '40px' }}
 					/>
-					<Header>Beneficiary Pool</Header>
+					<Back>Back</Back>
 				</div>
 				<Button
-					style={{ background : '#000'}}
+					style={{ background : '#F5761A', fontWeight: '600'}}
 					onClick={() => push('/beneficiary/add')}
 					variant="contained"
 				>
@@ -50,22 +51,20 @@ function BeneficiaryList() {
 				</Button>
 			</FlexHeader>
 			<TableContainer component={Paper}>
+				<Header>Registered Beneficiary List</Header>
 				<Table sx={{ minWidth: 650 }} aria-label="simple table">
 					<TableHead>
 						<TableRow>
-							<StyledTableCell>Name</StyledTableCell>
-							<StyledTableCell align="right">Account Number</StyledTableCell>
-							<StyledTableCell align="right">Bank Name</StyledTableCell>
-							<StyledTableCell align="right">Type of Account</StyledTableCell>
+							<StyledTableCell>Beneficiary Name</StyledTableCell>
+							<StyledTableCell align="right">Beneficiary Bank</StyledTableCell>
+							<StyledTableCell align="right">Account No.</StyledTableCell>
+							<StyledTableCell align="right">Account Type</StyledTableCell>
 							<StyledTableCell align="right">Actions</StyledTableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{(beneficiaries || []).map((row) => {
 							const { name, accountNumber, bankName, accountType, id  } = row || {};
-
-							const typeOfAcc = accountType.replace(/_/g, " ");
-
 							return(
 								<TableRow
 								key={id}
@@ -74,9 +73,9 @@ function BeneficiaryList() {
 								<TableCell component="th" scope="row" style={{ textTransform : 'capitalize' }}>
 									{name}
 								</TableCell>
+								<TableCell align="right">{startCase(bankName).toUpperCase()}</TableCell>
 								<TableCell align="right">{accountNumber}</TableCell>
-								<TableCell align="right">{bankName}</TableCell>
-								<TableCell align="right" style={{ textTransform : 'capitalize'}}>{typeOfAcc}</TableCell>
+								<TableCell align="right" style={{ textTransform : 'capitalize'}}>{startCase(accountType)}</TableCell>
 								<TableCell align="right">
 									<Edit
 										onClick={() => handleEdit(id)}

@@ -50,24 +50,24 @@ export const controls = [
 		},
 		options: [
 			{
-				label : 'Federal Bank',
-				value : 'Federal Bank'
+				label : 'STATE BANK OF INDIA',
+				value : 'state bank of india'
 			},
 			{
-				label: 'HDFC Bank',
-				value: 'HDFC Bank',
+				label: 'HDFC BANK LIMITED',
+				value: 'hdfc bank limited',
 			},
 			{
-				label: 'Indusland Bank',
-				value: 'Indusland Bank',
+				label: 'INDUSLAND BANK',
+				value: 'indusland bank',
 			},
 			{
-				label: 'SBI Bank',
-				value: 'SBI Bank',
+				label: 'INDIAN BANK',
+				value: 'indian bank',
 			},
 			{
-				label: 'Yes Bank',
-				value: 'Yes Bank',
+				label: 'UNION BANK OF INDIA',
+				value: 'union bank of india',
 			},
 		],
 	},

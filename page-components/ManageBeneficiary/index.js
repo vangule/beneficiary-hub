@@ -55,7 +55,7 @@ function ManageBeneficiary({ isEdit = false, prefillData = {} }) {
 					onClose={() => setIsOpened(false)}
 					severity="success"
 					variant="filled"
-					sx={{ width: '100%' }}
+					sx={{ width: '100%', background: '#F5761A' }}
 				>
 					Beneficiary {`${isEdit ? 'Edited' : 'Added'}`} Successfully
 				</Alert>

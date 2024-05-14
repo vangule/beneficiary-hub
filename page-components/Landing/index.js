@@ -24,12 +24,13 @@ function Landing() {
 	const { user } = useSelector((state) => state?.user);
 	const { fullName = '', address = '', country = '', mobileNumber = '', pincode = '' } = user || {};
 
-	const dispatch = useDispatch();
 	const {
 		control,
 		handleSubmit,
 		formState: { errors },
 	} = useForm();
+
+	const dispatch = useDispatch();
 
 	const onSubmit = (values) => {
 		dispatch(setUserDetails(values));
@@ -49,7 +50,7 @@ function Landing() {
 					<SubHeading>Account Information</SubHeading>
 					{!isEmpty(user) && (
 						<Button 
-							style={{ background : '#000' }}
+							style={{ background: '#F5761A', color: '#fff', fontWeight: '600' }}
 							variant="contained"
 							type="submit"
 							onClick={() => push('/beneficiary')}
@@ -65,7 +66,6 @@ function Landing() {
 								const FormItem = controlMapping[val.controllertype];
 								return (
 									<Grid key={val?.name} item xs={12} md={val.grid || 12}>
-										{' '}
 										<FormItem
 											style={{ width: '100%' }}
 											control={control}
@@ -79,7 +79,7 @@ function Landing() {
 						</Grid>
 						<BottomSection>
 							<Button
-								style={{ marginTop: '20px', background: '#000' }}
+								style={{ marginTop: '20px', background: '#F5761A', color: '#fff', fontWeight: '600' }}
 								variant="contained"
 								type="submit"
 							>
@@ -103,9 +103,8 @@ function Landing() {
 				)}
 				{!isEmpty(user) && (
 					<Button
-						style={{ marginTop: '20px' }}
+						style={{ marginTop: '20px', background: '#F14F32' }}
 						variant="contained"
-						color='error'
 						onClick={() => dispatch(resetState())}
 					>
 						Clear Data
@@ -120,9 +119,8 @@ function Landing() {
 			>
 				<Alert
 					onClose={handleCloseSnackbar}
-					severity="success"
 					variant="filled"
-					sx={{ width: '100%' }}
+					sx={{ width: '100%', background: '#F5761A' }}
 				>
 					User Created Successfully
 				</Alert>

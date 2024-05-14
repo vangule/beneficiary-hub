@@ -41,7 +41,7 @@ function BeneficiaryForm({ onSubmit = () => {}, isEdit = false, prefillData = {}
 			</Grid>
 			<div style={{ marginTop: '25px', display:'flex', justifyContent:'flex-end' }}>
 				<Button
-					style={{ marginRight: '20px', background: '#000' }}
+					style={{ marginRight: '20px', background: '#F5761A', color: '#fff' }}
 					variant="contained"
 					type="submit"
 				>
@@ -50,7 +50,7 @@ function BeneficiaryForm({ onSubmit = () => {}, isEdit = false, prefillData = {}
 				<Button
 					onClick={() => push('/beneficiary')}
 					variant="outlined"
-					style={{ border : '1px solid #000', color: '#000' }}
+					style={{ border : '1px solid #D3D3D3', background: '#D3D3D3', color: '#000'}}
 				>
 					Cancel
 				</Button>

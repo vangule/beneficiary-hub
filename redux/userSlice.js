@@ -33,8 +33,8 @@ const userSlice = createSlice({
 			);
 		},
 		resetState: (state) => {
-			state.user = {};
-			state.beneficiaries = [];
+			state.user = initialState.user;
+			state.beneficiaries = initialState.beneficiaries;
 		},
 	},
 });

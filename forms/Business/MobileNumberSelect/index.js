@@ -30,7 +30,6 @@ function SelectMobileNumber({
 					{...rest}
 					value={country_code || (value || {})[codeKey]}
 					onChange={handleCodeChange}
-					name=""
 					disabled={disable_country_code}
 				/>
 			</CountryCode>
@@ -38,7 +37,7 @@ function SelectMobileNumber({
 			<MobileNumber>
 				<TextFieldWrapper
 					{...rest}
-					variant="outlined"
+					variant="filled"
 					label="Mobile Number"
 					id="outlined-basic"
 					name="mobile_number"

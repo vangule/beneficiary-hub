@@ -7,13 +7,13 @@ import {
 
 export const controls = [
 	{
-		controllerType: 'input',
+		controllertype: 'input',
 		type: 'text',
 		name: 'fullName',
 		id: 'outlined-error-helper-text',
 		label: 'Full Name',
 		grid: 6,
-		variant: 'outlined',
+		variant: 'filled',
 		rules: {
 			required: {
 				value: true,
@@ -25,11 +25,12 @@ export const controls = [
 		},
 	},
 	{
-		controllerType: 'select',
+		controllertype: 'select',
 		type: 'select',
 		name: 'country',
 		label: 'Country',
-		id: 'outlined-error-helper-text',
+		id: 'demo-simple-select-filled',
+		variant: 'filled',
 		grid: 6,
 		rules: {
 			required: {
@@ -47,16 +48,8 @@ export const controls = [
 				value: 'afrika',
 			},
 			{
-				label: 'Afghanistan',
-				value: 'afghanistan',
-			},
-			{
 				label : 'Australia',
 				value: 'australia'
-			},
-			{
-				label: 'Japan',
-				value: 'japan',
 			},
 			{
 				label: 'Rusia',
@@ -69,12 +62,12 @@ export const controls = [
 		],
 	},
 	{
-		controllerType: 'textArea',
+		controllertype: 'textArea',
 		type: 'text',
 		name: 'address',
 		id: 'outlined-basic',
 		label: 'Address',
-		variant: 'outlined',
+		variant: 'filled',
 		rules: {
 			required: {
 				value: true,
@@ -85,10 +78,10 @@ export const controls = [
 		rows: 2,
 	},
 	{
-		controllerType: 'countryMobile',
+		controllertype: 'countryMobile',
 		name: 'mobileNumber',
-		id: 'outlined-basic',
-		variant: 'outlined',
+		id: 'demo-simple-select-filled',
+		variant: 'filled',
 		grid: 6,
 		value: { country_code: '+91' },
 		rules: {
@@ -111,13 +104,13 @@ export const controls = [
 		},
 	},
 	{
-		controllerType: 'input',
+		controllertype: 'input',
 		type: 'number',
 		min: '1',
 		grid: 6,
-		id: 'outlined-basic',
+		id: 'demo-simple-select-filled',
 		label: 'Pin Code',
-		variant: 'outlined',
+		variant: 'filled',
 		name: 'pincode',
 		rules: {
 			required: {

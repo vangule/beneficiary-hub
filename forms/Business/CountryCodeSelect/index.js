@@ -20,7 +20,7 @@ function SelectCountryCode(props) {
 			{...props}
 		>
 			{formattedList.map((val) => (
-				<MenuItem key={val.val} value={val.value}>
+				<MenuItem key={val.value} value={val.value}>
 					{val.label}
 				</MenuItem>
 			))}

@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const FormContainer = styled.div`
 	width: 100%;
-	max-width: 800px;
+	max-width: 600px;
 `;
 
 export const Header = styled.h2`

@@ -16,10 +16,10 @@ import {
 	Field
 } from './styles';
 
-function Home() {
+function Landing() {
 	const { push } = useRouter();
 
-	const [openSnackBar, setOpenSnackBar] = useState(false);
+	const [isOpened, setIsOpened] = useState(false);
 
 	const { user } = useSelector((state) => state?.user);
 	const { fullName = '', address = '', country = '', mobileNumber = '', pincode = '' } = user || {};
@@ -33,11 +33,11 @@ function Home() {
 
 	const onSubmit = (values) => {
 		dispatch(setUserDetails(values));
-		setOpenSnackBar(true);
+		setIsOpened(true);
 	};
 
 	const handleCloseSnackbar = () => {
-		setOpenSnackBar(false);
+		setIsOpened(false);
 	};
 
 
@@ -48,7 +48,12 @@ function Home() {
 				<FlexHeader>
 					<SubHeading>Account Information</SubHeading>
 					{!isEmpty(user) && (
-						<Button style={{ background : '#000' }} variant="contained" type="submit" onClick={() => push('/beneficiary')}>
+						<Button 
+							style={{ background : '#000' }}
+							variant="contained"
+							type="submit"
+							onClick={() => push('/beneficiary')}
+						>
 							Manage Beneficiaries
 						</Button>
 					)}
@@ -57,9 +62,9 @@ function Home() {
 					<form onSubmit={handleSubmit(onSubmit)}>
 						<Grid container spacing={2}>
 							{controls.map((val) => {
-								const FormItem = controlMapping[val.controllerType];
+								const FormItem = controlMapping[val.controllertype];
 								return (
-									<Grid key={val?.name} item xs={12} md={val.grid || '12'}>
+									<Grid key={val?.name} item xs={12} md={val.grid || 12}>
 										{' '}
 										<FormItem
 											style={{ width: '100%' }}
@@ -108,7 +113,7 @@ function Home() {
 				)}
 			</FormContainer>
 			<Snackbar
-				open={openSnackBar}
+				open={isOpened}
 				autoHideDuration={3000}
 				onClose={handleCloseSnackbar}
 				anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
@@ -126,4 +131,4 @@ function Home() {
 	);
 }
 
-export default Home;
+export default Landing;

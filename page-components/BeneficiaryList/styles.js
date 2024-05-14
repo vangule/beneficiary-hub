@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 
+export const Container = styled.div`
+	margin: 20px 40px;
+`;
+
 export const FlexHeader = styled.div`
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 20px;
+	margin-bottom: 40px;
 `;
 
 export const Header = styled.div`

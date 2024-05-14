@@ -2,13 +2,13 @@ import { InputController, SelectController } from '@/forms';
 
 export const controls = [
 	{
-		controllerType: 'input',
+		controllertype: 'input',
 		type: 'text',
 		name: 'name',
 		id: 'outlined-error-helper-text',
 		label: 'Name',
-		grid: 6,
-		variant: 'outlined',
+		grid: 12,
+		variant: 'filled',
 		rules: {
 			required: {
 				value: true,
@@ -20,13 +20,13 @@ export const controls = [
 		},
 	},
 	{
-		controllerType: 'input',
+		controllertype: 'input',
 		type: 'number',
 		name: 'accountNumber',
 		id: 'outlined-error-helper-text',
 		label: 'Account Number',
-		grid: 6,
-		variant: 'outlined',
+		grid: 12,
+		variant: 'filled',
 		rules: {
 			required: {
 				value: true,
@@ -35,12 +35,13 @@ export const controls = [
 		},
 	},
 	{
-		controllerType: 'select',
+		controllertype: 'select',
 		type: 'select',
 		name: 'bankName',
 		label: 'Bank Name',
 		id: 'outlined-error-helper-text',
-		grid: 6,
+		grid: 12,
+		variant: 'filled',
 		rules: {
 			required: {
 				value: true,
@@ -71,12 +72,13 @@ export const controls = [
 		],
 	},
 	{
-		controllerType: 'select',
+		controllertype: 'select',
 		type: 'select',
 		name: 'accountType',
 		label: 'Account Type',
 		id: 'outlined-error-helper-text',
-		grid: 6,
+		variant: 'filled',
+		grid: 12,
 		rules: {
 			required: {
 				value: true,

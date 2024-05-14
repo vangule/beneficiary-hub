@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { Edit, Delete, ArrowBack } from '@mui/icons-material';
 import { removeBeneficiary } from '@/redux/userSlice';
 import ConfirmationModal from './ConfirmationModal';
-import { FlexHeader, Header, StyledTableCell, Note } from './styles';
+import { Container, FlexHeader, Header, StyledTableCell, Note } from './styles';
 
 function BeneficiaryList() {
 	const { push } = useRouter();
@@ -20,7 +20,7 @@ function BeneficiaryList() {
 		push(`/beneficiary/edit/${id}`);
 	};
 
-	const handleDeleteModal = (id) => {
+	const handleRemoveBeneficiary = (id) => {
 		setSelectedId(id);
 		setOpen(true);
 	};
@@ -32,14 +32,14 @@ function BeneficiaryList() {
 	};
 
 	return (
-		<>
+		<Container>
 			<FlexHeader>
 				<div style={{ display: 'flex', alignItems: 'center' }}>
 					<ArrowBack
 						onClick={() => push('/')}
-						style={{ marginRight: 24, cursor: 'pointer' }}
+						style={{ marginRight: 24, cursor: 'pointer', width: '40px', height: '40px' }}
 					/>
-					<Header>Beneficiary Users</Header>
+					<Header>Beneficiary Pool</Header>
 				</div>
 				<Button
 					style={{ background : '#000'}}
@@ -64,7 +64,7 @@ function BeneficiaryList() {
 						{(beneficiaries || []).map((row) => {
 							const { name, accountNumber, bankName, accountType, id  } = row || {};
 
-							const typeOfAcc = row.accountType.replace(/_/g, " ");
+							const typeOfAcc = accountType.replace(/_/g, " ");
 
 							return(
 								<TableRow
@@ -83,7 +83,7 @@ function BeneficiaryList() {
 										style={{ marginRight: 8, cursor: 'pointer' }}
 									/>
 									<Delete
-										onClick={() => handleDeleteModal(id)}
+										onClick={() => handleRemoveBeneficiary(id)}
 										style={{ cursor: 'pointer' }}
 									/>
 								</TableCell>
@@ -100,7 +100,7 @@ function BeneficiaryList() {
 				setOpen={setOpen}
 				setSelectedId={setSelectedId}
 				handleDelete={handleDelete} />
-		</>
+		</Container>
 	);
 }
 

@@ -1,18 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import AddEditBeneficiary from '@/page-components/AddEditBeneficiary';
+import ManageBeneficiary from '@/page-components/ManageBeneficiary';
 import isEmpty from '@/utils/isEmpty';
 
 function AddBeneficiary() {
-	const router = useRouter();
+	const { push } = useRouter();
 	const { user } = useSelector((state) => state?.user);
 
 	if (isEmpty(user)) {
-		router.push('/');
+		push('/');
 	}
 
-	return <AddEditBeneficiary />;
+	return <ManageBeneficiary />;
 }
 
 export default AddBeneficiary;

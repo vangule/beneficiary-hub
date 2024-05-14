@@ -1,13 +1,16 @@
 import Select from '@mui/material/Select';
-import React from 'react';
+import React, { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
+import styled from 'styled-components';
 
 function SelectController(props) {
-	const { name, control, value, rules, options = [], ...rest } = props;
+	const { name, control, value, rules, options = [], controllertype = '', ...rest } = props;
+
+	const [isSelectFocused, setIsSelectFocused] = useState(false);
 
 	return (
 		<Controller
@@ -16,9 +19,9 @@ function SelectController(props) {
 			name={name}
 			defaultValue={value}
 			rules={rules}
-			render={({ field: { onChange, onBlur, value: newValue } }) => (
-				<FormControl fullWidth error={rest?.error}>
-					<InputLabel id="demo-simple-select-label">{rest.label}</InputLabel>
+			render={({ field: { onChange, onBlur, value: newValue } }) => {
+				return(<FormControl fullWidth error={rest?.error}>
+					<FieldName isSelectFocused={newValue || isSelectFocused} id="demo-simple-select-label">{rest.label}</FieldName>
 					<Select
 						{...rest}
 						id={name}
@@ -32,7 +35,9 @@ function SelectController(props) {
 						onBlur={(event) => {
 							onBlur(event);
 							rest.onBlur?.(event);
+							setIsSelectFocused(false);
 						}}
+						onFocus={() => setIsSelectFocused(true)}
 					>
 						{options.map((val) => (
 							<MenuItem key={val.value} value={val.value}>
@@ -41,9 +46,13 @@ function SelectController(props) {
 						))}
 					</Select>
 					{rest?.error && <FormHelperText>{rest?.helperText}</FormHelperText>}
-				</FormControl>
-			)}
+				</FormControl>)
+			}}
 		/>
 	);
 }
 export default SelectController;
+
+const FieldName = styled(InputLabel)`
+	margin-top: ${({ isSelectFocused }) => isSelectFocused ? '16px' : '0px'};
+`;

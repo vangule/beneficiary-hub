@@ -33,11 +33,13 @@ const userSlice = createSlice({
 			);
 		},
 		resetState: (state) => {
-			state.user = initialState.user;
-			state.beneficiaries = initialState.beneficiaries;
+			state.user = {};
+			state.beneficiaries = [];
 		},
 	},
 });
+
+export default userSlice.reducer;
 
 export const {
 	setUserDetails,
@@ -46,5 +48,3 @@ export const {
 	removeBeneficiary,
 	resetState,
 } = userSlice.actions;
-
-export default userSlice.reducer;
